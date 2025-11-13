@@ -1,0 +1,5 @@
+title: "My Blog"
+description: "A personal blog about AI research."
+baseurl: ""
+url: "https://hangnum.github.io"
+theme: jekyll-theme-minimal
