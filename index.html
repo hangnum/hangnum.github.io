@@ -4,6 +4,8 @@ title: "My Blog - AI Research"
 lang: zh-CN
 stylesheets:
   - /assets/css/home.css
+scripts:
+  - /assets/js/search.js
 ---
 <div class="container">
     <header id="home">
@@ -36,7 +38,7 @@ stylesheets:
             </div>
             <h2>研究领域</h2>
             <p>我的研究兴趣包括深度学习架构设计、自然语言理解、计算机视觉和强化学习。我致力于将理论知识转化为实际应用，解决现实世界中的复杂问题。</p>
-            <a href="#posts" class="card-link">
+            <a href="https://github.com/hangnum" class="card-link">
                 查看项目 <i class="fas fa-arrow-right"></i>
             </a>
         </section>
@@ -55,7 +57,15 @@ stylesheets:
 
     <section class="recent-posts" id="posts">
         <h2>最新文章</h2>
-        <ul class="post-list">
+        <div class="search-section">
+            <label for="post-search-input" class="search-label">站内搜索</label>
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="search" id="post-search-input" placeholder="输入关键词、标题或摘要" autocomplete="off" />
+            </div>
+            <p class="search-status" id="post-search-status">输入关键词开始搜索</p>
+        </div>
+        <ul class="post-list" id="recent-post-list">
             {% if site.posts and site.posts != empty %}
                 {% for post in site.posts limit:6 %}
                 <li class="post-item">
@@ -70,6 +80,7 @@ stylesheets:
                 </li>
             {% endif %}
         </ul>
+        <ul class="post-list is-hidden" id="post-search-results" aria-live="polite"></ul>
     </section>
 
     <footer id="contact">

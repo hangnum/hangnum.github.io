@@ -8,6 +8,11 @@ lang: zh-CN
 use_prism: true
 stylesheets:
   - /assets/css/post.css
+keywords:
+  - 多模态学习
+  - 生存分析
+  - 医学影像
+  - 基因组学
 ---
 
 ### **论文阅读笔记：Cohort-Individual Cooperative Learning for Multimodal Cancer Survival Analysis**
@@ -51,7 +56,7 @@ stylesheets:
 
 #### **3. 模型方法详解 (Detailed Methodology)**
 
-让我们参照论文的Figure 2和你的笔记，一步步拆解CCL框架。
+![图片描述](/assets/images/screenshots/Cohort-Individual%20Cooperative%20Learning%20for%20Multimodal%20Cancer%20Survival%20Analysis.png)
 
 ##### **3.1 整体框架 (Overall Framework)**
 
