@@ -1,3 +1,15 @@
+---
+layout: post
+title: "Cohort-Individual Cooperative Learning for Multimodal Cancer Survival Analysis"
+description: "论文阅读笔记：多模态癌症生存分析中的 Cohort-Individual Cooperative Learning 框架"
+category: Research Notes
+date: 2024-11-14 10:00:00 +0800
+lang: zh-CN
+use_prism: true
+stylesheets:
+  - /assets/css/post.css
+---
+
 ### **论文阅读笔记：Cohort-Individual Cooperative Learning for Multimodal Cancer Survival Analysis**
 
 **期刊/会议:** IEEE Transactions on Medical Imaging (TMI), 2025

@@ -1,5 +1,9 @@
 title: "My Blog"
 description: "A personal blog about AI research."
+lang: zh-CN
 baseurl: ""
 url: "https://hangnum.github.io"
 theme: jekyll-theme-minimal
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
