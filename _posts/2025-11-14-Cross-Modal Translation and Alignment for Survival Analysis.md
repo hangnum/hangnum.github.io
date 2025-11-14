@@ -48,6 +48,7 @@ CMTA框架通过构建两个并行的、对称的编码器-解码器结构，巧
 #### **3. 方法详解 (Detailed Methodology)**
 
 CMTA的整体框架如论文图1所示，可以分解为以下几个关键部分：
+![CMTA架构图](/assets/images/screenshots/Cross-Modal%20Translation%20and%20Alignment%20for%20Survival%20Analysis.png)
 
 **1. 整体架构:**
 模型包含两条并行的处理流，分别对应病理图像（Pathology）和基因组学（Genomics）。每条流都由一个**编码器（Encoder）**和一个**解码器（Decoder）**组成，中间通过一个**跨模态注意力模块（Cross-Modal Attention Module）**连接。
