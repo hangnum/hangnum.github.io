@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cohort-Individual Cooperative Learning for Multimodal Cancer Survival Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+            color: #764ba2;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 2.5em;
+            margin-bottom: 1.2em;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 0.5em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #34495e;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+            margin-top: 3em;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-top: 2em;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: #34495e;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+            text-align: justify;
+        }
+
+        strong, b {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        em, i {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5em;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 0.8em;
+        }
+
+        blockquote {
+            margin: 2em 0;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            font-style: italic;
+            color: #495057;
+        }
+
+        blockquote p {
+            margin-bottom: 0;
+        }
+
+        code {
+            background: #f1f3f4;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 2em 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: 0.95em;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 3em 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 2em 0;
+        }
+
+        .highlight-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+
+        .metadata {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 2em 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        .metadata h3 {
+            margin-top: 0;
+            color: #1565c0;
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+
+        .section-nav {
+            position: sticky;
+            top: 20px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-nav h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+
+        .section-nav ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-nav li {
+            margin-bottom: 0.5em;
+        }
+
+        .section-nav a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .section-nav a:hover {
+            color: #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .section-nav {
+                position: static;
+            }
+        }
+
+        .formula {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1em;
+            margin: 2em 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .figure-reference {
+            font-style: italic;
+            color: #6c757d;
+            text-align: center;
+            margin: 1em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> 返回首页
+        </a>
+
+        <h1>论文阅读笔记：Cohort-Individual Cooperative Learning for Multimodal Cancer Survival Analysis</h1>
+
+        <div class="metadata">
+            <h3>论文信息</h3>
+            <p><strong>期刊/会议:</strong> IEEE Transactions on Medical Imaging (TMI), 2025</p>
+            <p><strong>核心关键词:</strong> 
+                <span class="keyword-tag">多模态学习</span>
+                <span class="keyword-tag">生存分析</span>
+                <span class="keyword-tag">知识解耦</span>
+                <span class="keyword-tag">群体指导</span>
+                <span class="keyword-tag">过拟合</span>
+            </p>
+        </div>
+
+        <div class="section-nav">
+            <h3>目录导航</h3>
+            <ul>
+                <li><a href="#section-1">1. 论文核心思想</a></li>
+                <li><a href="#section-2">2. 背景与动机</a></li>
+                <li><a href="#section-3">3. 模型方法详解</a></li>
+                <li><a href="#section-4">4. 实验与结果分析</a></li>
+                <li><a href="#section-5">5. 亮点与贡献</a></li>
+                <li><a href="#section-6">6. 潜在问题与未来方向</a></li>
+                <li><a href="#section-7">7. 总结</a></li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h2 id="section-1">1. 论文核心思想 (Executive Summary)</h2>
+
+        <p>这篇论文旨在解决一个在癌症精准医疗中至关重要的问题：<strong>如何有效融合病理图像（Pathology）和基因组学（Genomics）等多模态数据，以进行更准确的癌症生存分析</strong>。</p>
+
+        <p>传统方法在融合高维、异构数据时面临两大挑战：</p>
+        <ol>
+            <li><strong>信息冗余与缺失</strong>：模型难以区分不同模态间的冗余信息、特有信息以及交互产生的新信息（协同信息），导致融合效率低下。</li>
+            <li><strong>过拟合风险</strong>：高维数据和有限的样本量使得模型容易学习到与任务无关的伪相关性，导致泛化能力差。</li>
+        </ol>
+
+        <p>为应对这些挑战，作者提出了一个名为<strong>Cohort-individual Cooperative Learning (CCL)</strong> 的全新框架。其核心贡献可以概括为两个相互协作的模块：</p>
+
+        <ul>
+            <li><strong>多模态知识分解 (Multimodal Knowledge Decomposition, MKD):</strong> 该模块将来自病理和基因组的知识<strong>显式地</strong>分解为四种不同的成分：<strong>冗余 (Redundancy)</strong>、<strong>协同 (Synergy)</strong> 以及两种模态各自的<strong>独特性 (Uniqueness)</strong>。这种精细的分解能够让模型更清晰地理解每部分信息的作用，促进有效融合。</li>
+            <li><strong>群体指导建模 (Cohort Guidance Modeling, CGM):</strong> 该模块引入了"群体"的概念，利用一个动态更新的"群体知识库"(Cohort Bank) 来指导个体样本的学习。它通过强制模型学习到的特征在具有相似风险的患者群体中保持一致性，从而<strong>有效缓解过拟合</strong>，提升模型的判别力和泛化能力。</li>
+        </ul>
+
+        <p>总的来说，CCL框架通过 <strong>"分解"</strong> 和 <strong>"指导"</strong> 两个步骤，协同工作，使得模型能够从复杂的多模态数据中学习到更鲁棒、更具判别力的表征，最终实现业界领先的生存预测性能。</p>
+
+        <hr>
+
+        <h2 id="section-2">2. 背景与动机 (Background and Motivation)</h2>
+
+        <p>生存分析的目标是预测患者在特定时间点前的生存概率，这对于制定治疗方案至关重要。近年来，深度学习极大地推动了这一领域的发展。</p>
+
+        <p><strong>单模态的局限</strong>：单独使用基因组数据或病理图像都有其局限性。基因组学提供分子层面的信息，但可能忽略了肿瘤的宏观形态和微环境；病理图像则反之。</p>
+
+        <p><strong>多模态的挑战</strong>：</p>
+        <ol>
+            <li><strong>异构性鸿沟 (Heterogeneity Gap)</strong>：基因组数据是结构化或序列化的，而病理图像是非结构化的视觉数据，两者在数据形态和维度上差异巨大，直接融合非常困难。</li>
+            <li><strong>信息的复杂关系</strong>：多模态信息的关系是复杂的。
+                <ul>
+                    <li><strong>冗余/公共知识 (Redundancy/Common Knowledge)</strong>: 比如某种基因突变同时会在病理切片上表现为特定的细胞形态。这部分信息是共享的，直接叠加会产生<strong>冗余</strong>，甚至成为<strong>干扰</strong>。</li>
+                    <li><strong>协同知识 (Synergy Knowledge)</strong>: 这是最重要也最容易被忽略的部分。某些信息只有在两种模态<strong>结合</strong>时才会涌现。例如，单一的基因表达可能意义不大，但当它与特定的组织学模式一起出现时，可能强烈预示着不良预后。这部分知识是<strong>1+1>2</strong>的<strong>新信息</strong>。</li>
+                </ul>
+            </li>
+            <li><strong>高维与过拟合</strong>：全切片扫描图像（WSI）是千兆像素级别的，基因组数据也有数万个维度。在几百个病人的数据集上训练模型，极易发生过拟合，模型学到的可能是样本特有的噪声，而不是普适的生物学规律。</li>
+        </ol>
+
+        <p>作者正是基于以上观察，提出必须<strong>显式地建模</strong>这些信息的不同成分，并利用<strong>群体先验知识</strong>来约束模型的学习过程，防止其"走偏"。</p>
+
+        <hr>
+
+        <h2 id="section-3">3. 模型方法详解 (Detailed Methodology)</h2>
+
+        <p>CCL框架是一个端到端的模型，主要包含四个阶段：</p>
+        <ol>
+            <li><strong>单模态特征提取 (Unimodal Feature Extraction)</strong></li>
+            <li><strong>多模态知识分解 (MKD)</strong></li>
+            <li><strong>群体指导建模 (CGM)</strong></li>
+            <li><strong>多模态融合与生存预测 (Fusion & Prediction)</strong></li>
+        </ol>
+
+        <h3>3.1 单模态特征提取 (Unimodal Feature Extraction)</h3>
+
+        <h4>病理图像 (Pathology):</h4>
+        <ol>
+            <li><strong>Patching & Embedding</strong>: 使用预训练的 <strong>ResNet-50</strong> 对WSI切片进行分块(Patching)，并提取每个小块的特征向量。</li>
+            <li><strong>降维与聚类 (Clustering)</strong>: 使用 <strong>K-means</strong> 算法将这些patch特征聚类成 <code>k</code> 个簇，并用这 <code>k</code> 个簇中心作为整个WSI的表征。</li>
+            <li><strong>簇中心对齐 (Cluster Center Alignment, CCA)</strong>: 引入了一个全局的<strong>锚点(Anchor)</strong>，并使用<strong>匈牙利算法 (Hungarian Algorithm)</strong> 为每个病人的簇中心与锚点进行<strong>最优匹配</strong>，从而实现对齐。对齐后，所有病人表示向量的<strong>同一维度对应着相似的病理表型</strong>。</li>
+        </ol>
+
+        <h4>基因组数据 (Genomics):</h4>
+        <p>将RNA-seq, CNV, SNV等数据分成6个子序列，然后使用<strong>自归一化神经网络 (SNN)</strong> 进行特征提取，最后通过全连接层融合成一个单一的特征向量 <code>Fg</code>。</p>
+
+        <h3>3.2 多模态知识分解 (MKD)</h3>
+
+        <p>这是CCL的第一个核心创新。模型设计了四个独立的编码器来解耦 <code>Fp</code> (病理特征) 和 <code>Fg</code> (基因组特征)。</p>
+
+        <h4>独特性知识 (Uniqueness, P and G):</h4>
+        <ul>
+            <li><code>P = Φp(Fp)</code> 和 <code>G = Φg(Fg)</code>。这两个编码器分别只接收单一模态的输入，旨在捕获该模态独有的、无法从另一模态推断的信息。</li>
+        </ul>
+
+        <h4>冗余/公共知识 (Common, C) 和 协同知识 (Synergistic, S):</h4>
+        <ul>
+            <li><code>C = Φc(Fp, Fg)</code> 和 <code>S = Φs(Fp, Fg)</code>。这两个编码器都接收双模态输入，内部使用了一个<strong>共注意力机制 (Co-attention)</strong>。</li>
+            <li><strong>关键区别</strong>：虽然 <code>Φc</code> 和 <code>Φs</code> 结构相同，但它们的<strong>参数是独立的</strong>，并且将受到<strong>完全不同的监督信号</strong>，从而强迫它们分别学习"冗余"和"协同"两种不同的知识。</li>
+        </ul>
+
+        <h3>3.3 群体-个体协同指导 (CGM)</h3>
+
+        <p>这是CCL的第二个核心创新，也是实现知识解耦和抑制过拟合的关键。CGM在两个层面上提供指导：</p>
+
+        <h4>知识层面指导 (Knowledge-Level Guidance):</h4>
+        <p>通过一个<strong>相似性约束损失 <code>lk</code></strong> 来定义四种知识的"身份"：</p>
+        <ul>
+            <li><strong>最大化 G 与 Fg 的相似度，同时最小化 G 与 Fp 的相似度</strong>：确保 G 只包含基因组的<strong>特有</strong>信息。P同理。</li>
+            <li><strong>最大化 C 与 Fg 和 Fp 两者的相似度</strong>：定义了 C 是两者共享的<strong>公共/冗余</strong>知识。</li>
+            <li><strong>最小化 S 与 Fg 和 Fp 两者的相似度</strong>：定义了 S 是超越两个单模态的<strong>新知识/协同</strong>知识。</li>
+        </ul>
+
+        <h4>患者层面指导 (Patient-Level Guidance):</h4>
+        <ul>
+            <li><strong>群体知识库 (Cohort Bank)</strong>: 模型维护一个队列，存储<strong>历史上具有相似风险等级的患者</strong>的知识特征（G, P, C, S）。</li>
+            <li><strong>对比学习损失 <code>lp</code></strong>: 
+                <ul>
+                    <li><strong>拉近 (Pull)</strong>：将其特征与Cohort Bank中<strong>同风险组</strong>的患者特征（正样本）在特征空间中拉近。</li>
+                    <li><strong>推远 (Push)</strong>：将其特征与<strong>不同风险组</strong>的患者特征（负样本）推远。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>作用机制</h4>
+            <p>这种群体指导机制，强迫模型学习到的特征不仅仅对当前个体有效，更要<strong>在一个群体(Cohort)的尺度上具有一致性和区分度</strong>。这极大地增强了模型的泛化能力，避免了对个体噪声的过拟合。</p>
+        </div>
+
+        <h3>3.4 多模态融合与生存预测</h3>
+
+        <ol>
+            <li><strong>融合 (Fusion)</strong>: 将分解出的四种知识 <code>G, P, C, S</code> 以及一个可学习的 <code>[CLS]</code> token 一起送入一个 <strong>Transformer</strong> 模型进行深度交互和融合。</li>
+            <li><strong>预测 (Prediction)</strong>: 将生存时间离散化为 <code>n</code> 个区间，将生存预测从一个回归问题转化为一个<strong>分类问题</strong>。</li>
+        </ol>
+
+        <div class="formula">
+            <strong>总损失函数:</strong> L = L<sub>surv</sub> + α × L<sub>cohort</sub>
+        </div>
+
+        <p>其中 <code>L_cohort = lk + lp</code>。</p>
+
+        <hr>
+
+        <h2 id="section-4">4. 实验与结果分析</h2>
+
+        <h3>数据集</h3>
+        <p>在TCGA的5个癌症数据集上进行了实验（BLCA, BRCA, GBMLGG, LUAD, UCEC），这些都是该领域的标准 benchmark。</p>
+
+        <h3>性能对比</h3>
+        <p>CCL在多个数据集上均取得了SOTA（State-of-the-art）的性能，C-index（一致性指数，生存分析常用指标）显著优于之前的各类单模态和多模态方法。尤其是在多种不同的病理特征提取主干网络（ResNet-50, HIPT, PLIP等）上都表现出鲁棒的优越性，证明了框架的普适性。</p>
+
+        <h3>生存曲线分析</h3>
+        <p>模型能够非常显著地将患者区分为高风险和低风险组（p-value远小于0.05），证明了其强大的风险分层能力。</p>
+
+        <h3>消融实验 (Ablation Study)</h3>
+        <p>从一个基础的DualTrans模型开始，逐步加入<strong>CCA</strong>、<strong>MKD</strong>和<strong>CGM</strong>。结果显示，<strong>每加入一个模块，性能都有稳定提升</strong>，其中MKD和CGM带来的增益最为显著，这强有力地证明了知识分解和群体指导这两个核心创新的有效性。</p>
+
+        <h3>知识成分可视化</h3>
+        <p>t-SNE可视化结果显示，分解出的四种知识成分（G, P, C, S）在特征空间中形成了<strong>明显分离的簇</strong>，且公共（C）和协同（S）知识位于两个特有知识（G, P）的"中间地带"，这与理论设计高度一致。</p>
+
+        <hr>
+
+        <h2 id="section-5">5. 亮点与贡献 (Highlights and Contributions)</h2>
+
+        <ol>
+            <li><strong>创新的知识分解框架 (MKD)</strong>: 首次将多模态知识精细地、显式地分解为冗余、协同和独特性四个部分，超越了以往仅区分"共享"和"私有"的粗粒度方法。</li>
+            <li><strong>有效的群体指导正则化 (CGM)</strong>: 巧妙地利用对比学习和动态的"群体知识库"来约束特征学习，是解决医学图像分析中样本量有限、过拟合风险高这一普遍难题的有效方案。</li>
+            <li><strong>精巧的病理特征对齐 (CCA)</strong>: 针对K-means的随机性问题提出的簇中心对齐策略，虽然是一个技术细节，但对于提升模型性能和可解释性至关重要。</li>
+            <li><strong>卓越的性能和泛化性</strong>: 在多个大规模数据集上取得了SOTA性能，并展示了其在不同骨干网络下的稳定表现，具有很强的实用价值。</li>
+        </ol>
+
+        <hr>
+
+        <h2 id="section-6">6. 潜在问题与未来方向 (Potential Issues & Future Work)</h2>
+
+        <ol>
+            <li><strong>"协同性"的定义</strong>: 论文通过与原始模态正交来定义协同性，这是一种有效的计算代理（proxy），但未必是协同信息在生物学上的唯一或完美定义。</li>
+            <li><strong>群体划分的硬性</strong>: 目前是根据生存时间将患者划分为<code>r</code>个风险等级，这种硬性划分可能忽略了风险的连续性。</li>
+            <li><strong>CCA的局限性</strong>: 虽然CCA很有效，但它依赖于一个固定的锚点。对于分布差异极大的数据集，或存在多种罕见亚型时，单一锚点可能不是最优的。</li>
+            <li><strong>可解释性</strong>: 论文通过注意力图展示了不同知识成分关注的区域，这是一个很好的开端。但还可以进一步探索，比如协同知识（Synergy）到底关注了哪些基因和病理模式的组合。</li>
+        </ol>
+
+        <hr>
+
+        <h2 id="section-7">7. 总结</h2>
+
+        <p>这篇论文是一项非常扎实且富有洞见的工作。它不仅仅是提出了一个效果更好的新模型，更重要的是，它为<strong>如何深入理解和处理多模态医学数据中的复杂信息关系</strong>提供了一个清晰、有效的分析框架 (MKD + CGM)。</p>
+
+        <p>通过显式分解和群体指导，它在应对医学AI核心挑战——<strong>数据异构性</strong>和<strong>模型泛化性</strong>上，迈出了坚实的一步。对于我们从事相关领域研究的人来说，其思想和方法都具有很高的借鉴价值。</p>
+
+        <div class="highlight-box">
+            <h4>核心价值</h4>
+            <p>CCL框架通过<strong>"分解"</strong>和<strong>"指导"</strong>两个核心创新，为多模态医学数据分析提供了新的范式，在理论创新和实际应用方面都具有重要意义。</p>
+        </div>
+
+        <hr>
+
+        <div style="text-align: center; margin-top: 3em; color: #6c757d;">
+            <p><i class="fas fa-calendar"></i> 2024年11月14日 | <i class="fas fa-user"></i> 研究笔记</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 高亮当前章节
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('h2[id], h3[id]');
+            const navLinks = document.querySelectorAll('.section-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.fontWeight = 'normal';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.fontWeight = 'bold';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
