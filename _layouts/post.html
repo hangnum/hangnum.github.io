@@ -2,22 +2,71 @@
 layout: default
 ---
 <div class="post-page">
-  <div class="post-container">
-    <a href="{{ '/' | relative_url }}" class="back-link">
-      <i class="fas fa-arrow-left"></i>
-      返回首页
-    </a>
-    <article class="post">
-      <header class="post-header">
-        <p class="post-category">{{ page.category | default: 'Blog' }}</p>
-        <h1>{{ page.title }}</h1>
-        <p class="post-meta">
-          发表于 {{ page.date | date: '%Y-%m-%d' }}
-        </p>
-      </header>
-      <div class="post-content">
-        {{ content }}
-      </div>
-    </article>
+  <div class="post-layout">
+    <aside class="section-nav" id="post-section-nav" aria-label="文章目录">
+      <h3>目录</h3>
+      <ul class="toc-list"></ul>
+    </aside>
+    <div class="post-container">
+      <a href="{{ '/' | relative_url }}" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        返回首页
+      </a>
+      <article class="post">
+        <header class="post-header">
+          <p class="post-category">{{ page.category | default: 'Blog' }}</p>
+          <h1>{{ page.title }}</h1>
+          <p class="post-meta">
+            发表于 {{ page.date | date: '%Y-%m-%d' }}
+          </p>
+        </header>
+        <div class="post-content">
+          {{ content }}
+        </div>
+      </article>
+    </div>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const headings = document.querySelectorAll('.post-content h2, .post-content h3, .post-content h4');
+  const nav = document.querySelector('#post-section-nav');
+  if (!nav || headings.length === 0) {
+    if (nav) nav.style.display = 'none';
+    return;
+  }
+  const list = nav.querySelector('.toc-list');
+  const slugify = (text) => {
+    return text
+      .trim()
+      .toLowerCase()
+      .replace(/[\s]+/g, '-')
+      .replace(/[^a-z0-9\u4e00-\u9fa5\-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  };
+  headings.forEach((heading, index) => {
+    if (!heading.id) {
+      const generated = slugify(heading.textContent);
+      heading.id = generated || `section-${index + 1}`;
+    }
+    const li = document.createElement('li');
+    const level = heading.tagName.toLowerCase();
+    const levelNumber = Number(level.replace('h', ''));
+    li.classList.add(`toc-level-${levelNumber}`);
+    const link = document.createElement('a');
+    link.href = `#${heading.id}`;
+    link.textContent = heading.textContent.trim();
+    link.addEventListener('click', (event) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', link.getAttribute('href'));
+      }
+    });
+    li.appendChild(link);
+    list.appendChild(li);
+  });
+});
+</script>
