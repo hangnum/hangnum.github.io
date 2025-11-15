@@ -633,3 +633,44 @@ tr:hover {
     text-align: center;
     margin: 1em 0;
 }
+
+/* 数学公式样式 */
+.katex-display {
+    margin: 1.5em 0;
+    font-size: 1.1em;
+}
+
+.katex {
+    font-size: 1.05em;
+}
+
+/* 确保公式在段落中正确对齐 */
+p .katex {
+    vertical-align: -0.1em;
+}
+
+/* 公式容器样式 */
+.formula {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.1em;
+    margin: 2em 0;
+    border: 1px solid #dee2e6;
+    overflow-x: auto;
+}
+
+/* 响应式公式 */
+@media (max-width: 768px) {
+    .katex-display {
+        font-size: 0.9em;
+        margin: 1em 0;
+    }
+    
+    .formula {
+        padding: 15px;
+        font-size: 0.95em;
+    }
+}

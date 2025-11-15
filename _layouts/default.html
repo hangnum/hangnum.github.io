@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +9,58 @@
   {% if meta_description %}
   <meta name="description" content="{{ meta_description }}">
   {% endif %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-5o1eZBENgijvOLLmObAun1vDLteA94ppIqhzyapMI2vlA38nSxrdbidKdvUSsfx8bVsgcuyo6ed15xlf7BbN3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+    integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD13XbgL4Acx5pwbMvocltAcsr/cE…" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+    integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0i…"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-5o1eZBENgijvOLLmObAun1vDLteA94ppIqhzyapMI2vlA38nSxrdbidKdvUSsfx8bVsgcuyo6ed15xlf7BbN3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   {% if page.use_prism %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-Q1PWXNte1qPFN3Wf9eKJeNEgnbWiwxupCSvJzpuG1HsfrN7kYM/qf+oCuWHa3gwxObn2ymlk/wEYBLETymFv2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    integrity="sha512-Q1PWXNte1qPFN3Wf9eKJeNEgnbWiwxupCSvJzpuG1HsfrN7kYM/qf+oCuWHa3gwxObn2ymlk/wEYBLETymFv2g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   {% endif %}
   {% assign stylesheets = page.stylesheets | default: site.stylesheets %}
   {% if stylesheets %}
-    {% for stylesheet in stylesheets %}
+  {% for stylesheet in stylesheets %}
   <link rel="stylesheet" href="{{ stylesheet | relative_url }}">
-    {% endfor %}
+  {% endfor %}
   {% endif %}
   {% if site.favicon %}
   <link rel="icon" href="{{ site.favicon | relative_url }}">
   {% endif %}
   {% seo %}
 </head>
+
 <body class="{{ page.body_class | default: '' }}">
   {{ content }}
   {% if page.scripts %}
-    {% for script in page.scripts %}
+  {% for script in page.scripts %}
   <script src="{{ script | relative_url }}"></script>
-    {% endfor %}
+  {% endfor %}
   {% endif %}
   {% if page.use_prism %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-+SggXZHzVvzJeY9qpiapqYh6gMPkTFogyXv3gZH/B+eCwbn4T/6KrAEyy6AdZkGouVp21Hb+Jseb3CidENPDDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+    integrity="sha512-+SggXZHzVvzJeY9qpiapqYh6gMPkTFogyXv3gZH/B+eCwbn4T/6KrAEyy6AdZkGouVp21Hb+Jseb3CidENPDDg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   {% endif %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+  </script>
 </body>
+
 </html>
