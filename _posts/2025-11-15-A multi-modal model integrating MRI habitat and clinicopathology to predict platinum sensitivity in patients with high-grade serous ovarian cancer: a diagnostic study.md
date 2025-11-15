@@ -54,6 +54,7 @@ A multi-modal model integrating MRI habitat and clinicopathology to predict plat
 *   **目标：** 深入解析论文中三个单模态模型和多模态融合模型的构建细节。
 
   *   **整体框架：** 整个工作流程（见论文图3）是一个典型的“三分支输入，一融合输出”的架构。临床数据、MRI数据和WSI数据分别经过独立的处理流程生成各自的特征签名（signature），然后输入到MHA或Ensemble模块中进行融合和最终预测。
+  ![fig3](/assets/images/screenshots/A%20multi-modal%20model%20integrating%20MRI%20habitat%20and%20clinicopathology%20to%20predict%20platinum%20sensitivity%20in%20patients%20with%20high-grade%20serous%20ovarian%20cancer:%20a%20diagnostic%20study.png)
 
   *   **技术细节：**
       *   **Clinic模型：**
